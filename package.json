@@ -1,0 +1,21 @@
+{
+  "name": "article-writer",
+  "version": "1.0.0",
+  "main": "write.js",
+  "license": "MIT",
+  "dependencies": {
+    "browser-sync": "2.27.10",
+    "gulp": "4.0.2",
+    "pug": "3.0.2",
+    "sass": "1.53.0"
+  },
+  "scripts": {
+    "write": "node write.js",
+    "build": "node build.js"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.21"
+  },
+  "keywords": [],
+  "description": ""
+}
