@@ -1,0 +1,7 @@
+include title.pug
+
+mixin TOC(title="Table Of Content")
+    +articleSection('topic', title, false)
+    +textBlock 
+        block
+    div.toc-wrapper

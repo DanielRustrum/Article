@@ -1,0 +1,17 @@
+-references = []
+
+mixin reference(media, name, link)
+    li
+        a(href=link)
+            b= `${media.charAt(0).toUpperCase() + media.slice(1)}:`
+            blank= `${name}`
+
+mixin referenceGroup(name)
+    ul
+        li 
+            h3= `References about The ${name}`
+            ul
+                block
+
+mixin references()
+    block

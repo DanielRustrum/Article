@@ -1,1 +1,2 @@
-function testfunct() { }
+document.onload = function () {
+};

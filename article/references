@@ -1,0 +1,15 @@
+The JS/V8 Engine
+    site: "V8 Dev Site"
+    - https://v8.dev/
+    video: "Franziska Hinkelmann: JavaScript engines - how do they even? | JSConf EU"
+    - https://www.youtube.com/watch?v=p-iiEDtpy6I&ab_channel=JSConf
+
+JavaScript Execution
+
+Browser
+    article: "Multi-process on the Web: The Browser Process Model"
+    - https://www.webperf.tips/tip/browser-process-model/
+    article: "How web browsers use Processes and Threads"
+    - https://levelup.gitconnected.com/how-web-browsers-use-processes-and-threads-9f8f8fa23371
+    video: "Lin Clark: A Cartoon Intro to WebAssembly | JSConf EU"
+    - https://www.youtube.com/watch?v=HktWin_LPf4&ab_channel=JSConf

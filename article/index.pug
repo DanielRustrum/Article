@@ -1,13 +1,202 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Document
-    body 
-        h1.hi "Hello WOrld!"
-        includes components/header/toc.pug
+include components/core/doc
+        
+//- Paper Meta Data
+- var title = "The JavaScript Engine in the Browser"
 
-        +TOC("Overview")
-            | To skip to a specific point, use the table below.
+include components/headers/toc
+include components/headers/title
+include components/block/block
+include components/block/code
+include components/structure/structure
+include components/references/reference
+
+
+
+
++docBlock(title)
+
+    <!-- Rewrite Intro -->
+    +textBlock
+        | Throughout my research into the JavaScript Engine, I have learned I have greatly underestimated the complexity on how JavaScript code executes. I hypothesized that JavaScript had a very standard Scoping system and execution method of other programming languages, boy was I wrong. JavaScript has a lot of moving part from the <l>Workings of Javascript</l> to the <l>Javascript Engine</l> to <l>How Javascript Runs in the Browser</l>.
+        
+    +articleSection('section', 'Side Note:', false)
+    +textBlock
+        | I do want to clarify that most of my research was in the context of a browser, I did not look into how NodeJS differs nor any other Javascript Engines. I did this to restrict my deep dive into a more contained area (I did not want to write a book), also I partly did this because I believe that the browser is where Javascript shines.
+
+
+    +TOC("Overview")
+        | To skip to a specific point, use the table below.
+        
+
+    +articleSection('part', 'Part 1: Javascript Execution')
+    +articleSection('topic', 'Functions')
+    +articleSection('section', 'Execution Context')
+    +articleSection('section', 'The Call Stack')
+    +articleSection('section', 'The Code Block')
+    +articleSection('section', 'Function Optimization')
+    +articleSection('section', 'The Callback')
+    +container
+        +textBlock
+            | hello!<br><br><br><br><br><br><br><br><br><br><br>hi
+        +codeBlock
+            | const <l>callback</l> = () => {
+            |   {This is valid}
+            |   var a = "", 2
+            |}
+
+    +codeBlock
+            | const callback = () => {
+            |   var a = "", 2
+            |}
+        
+
+    +articleSection('topic', 'Javascript Event-Based Architecture')
+
+
+    +articleSection('topic', 'The Event Loop')
+    +articleSection('section', 'Web APIs')
+    +articleSection('section', 'Tasks Queue')
+    +articleSection('section', 'MicroTasks')
+    +articleSection('sub-section', 'Promises')
+    +articleSection('sub-section', 'Async Functions')
+    +articleSection('section', 'The Renderer')
+    +articleSection('sub-section', 'Animation Request Frame')
+    +articleSection('sub-section', 'Paint')
+
+    +articleSection('topic', 'Threading')
+    +articleSection('section', 'The Main Thread')
+    +articleSection('section', 'Web Workers')
+
+    +articleSection('topic', 'Agents')
+    +articleSection('topic', "The Browser's Multi-Process Architecture")
+    +articleSection('topic', 'Conclusion')
+
+    +articleSection('topic', 'References', true)
+
+    +textBlock
+    | These are articles, videos, and documentation I used to understand the working of JavaScript scheduling and execution and get inspiration for the illustration and structure.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
++referenceGroup("The JS/V8 Engine(Under The Hood)")
+    +reference(
+        "site", 
+        "V8 Dev Site", 
+        "https://v8.dev/"
+    )
+    +reference(
+        "video", 
+        "Franziska Hinkelmann: JavaScript engines - how do they even? | JSConf EU", 
+        "https://www.youtube.com/watch?v=p-iiEDtpy6I&ab_channel=JSConf"
+    )
+    
++referenceGroup("JavaScript Execution")
+    +reference(
+        "article", 
+        "JavaScript Event Loop", 
+        "https://www.javascripttutorial.net/javascript-event-loop/"
+    )
+    +reference(
+        "article", 
+        "Understanding Execution Context and Execution Stack in Javascript", 
+        "https://blog.bitsrc.io/understanding-execution-context-and-execution-stack-in-javascript-1c9ea8642dd0"
+    )
+    
+    +reference(
+        "video", 
+        "Jake Archibald: In The Loop - JSConf.Asia", 
+        "https://www.youtube.com/watch?v=cCOL7MC4Pl0&ab_channel=JSConf"
+    )
+    +reference(
+        "video", 
+        "What the heck is the event loop anyway? | Philip Roberts | JSConf EU", 
+        "https://www.youtube.com/watch?v=8aGhZQkoFbQ&ab_channel=JSConf"
+    )
+    +reference(
+        "article", 
+        "Async/Await vs Promises — A Guide and Cheat Sheet", 
+        "https://levelup.gitconnected.com/async-await-vs-promises-4fe98d11038f"
+    )
+    +reference(
+        "article", 
+        "Using microtasks in JavaScript with queueMicrotask()", 
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide"
+    )
+    +reference(
+        "article", 
+        "In depth: Microtasks and the JavaScript runtime environment", 
+        "https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide/In_depth"
+    )
+    +reference(
+        "documentation", 
+        "async function", 
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function"
+    )
+    +reference(
+        "article", 
+        "The event loop", 
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop"
+    )
+    +reference(
+        "article", 
+        "The JavaScript Execution Context, Call-stack & Event Loop", 
+        "https://dev.to/thebabscraig/the-javascript-execution-context-call-stack-event-loop-1if1"
+    )
+    +reference(
+        "article", 
+        "Execution context in JS", 
+        "https://anil-pace.medium.com/concepts-of-javascript-part-4-be254439b90a"
+    )
+    +reference(
+        "documentation", 
+        "block", 
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/block"
+    )
+    +reference(
+        "video", 
+        "Asynchrony: Under the Hood - Shelley Vohr - JSConf EU", 
+        "https://www.youtube.com/watch?v=SrNQS8J67zc&ab_channel=JSConf"
+    )
+    +reference(
+        "video", 
+        "JavaScript Engines: The Good Parts™ - Mathias Bynens & Benedikt Meurer - JSConf EU 2018", 
+        "https://www.youtube.com/watch?v=5nmpokoRaZI&ab_channel=JSConf"
+    )
+    +reference(
+        "video", 
+        "Understanding the V8 JavaScript Engine", 
+        "https://www.youtube.com/watch?v=xckH5s3UuX4&ab_channel=freeCodeCampTalks"
+    )
+    
++referenceGroup("Browser")
+    +reference(
+        "article", 
+        "Multi-process on the Web: The Browser Process Model", 
+        "https://www.webperf.tips/tip/browser-process-model/"
+    )
+    +reference(
+        "article", 
+        "How web browsers use Processes and Threads", 
+        "https://levelup.gitconnected.com/how-web-browsers-use-processes-and-threads-9f8f8fa23371"
+    )
+    +reference(
+        "video", 
+        "Lin Clark: A Cartoon Intro to WebAssembly | JSConf EU", 
+        "https://www.youtube.com/watch?v=HktWin_LPf4&ab_channel=JSConf"
+    )
+    

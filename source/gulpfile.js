@@ -13,21 +13,26 @@ let build_path = path.join(__dirname, config_data["build-path"])
 
 
 const scss_to_css = cb => {
-    return gulp.src(`${project_path}/**/*.scss`)
+    return gulp.src(`${project_path}/*.scss`)
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest(`${build_path}`))
 }
 
 const pug_to_html = cb => {
-    return gulp.src(`${project_path}/**/*.pug`)
+    return gulp.src(`${project_path}/*.pug`)
         .pipe(
-            pug({})
+            pug({
+                blade: false,
+                src:  `${project_path}/components`,
+                search: '**/*.pug',
+                pugExtension: '.pug',
+            })
         )
         .pipe(gulp.dest(`${build_path}/`))
 }
 
 const ts_to_js = cb => {
-    return gulp.src(`${project_path}/**/*.ts`)
+    return gulp.src(`${project_path}/*.ts`)
         .pipe(
             ts({
                 outDir: `${build_path}`
@@ -43,6 +48,8 @@ const move_other_files = () => {
         `${project_path}/*.js`,
         `${project_path}/*.css`,
         `${project_path}/*.html`,
+        `${project_path}/lib`,
+        `${project_path}/js`,
     ];
 
     gulp
@@ -66,6 +73,7 @@ const on_project_change = () => {
 exports.style = scss_to_css
 exports.html = pug_to_html
 exports.script = ts_to_js
+exports.clean = clean_build
 
 exports.default = () => {
     clean_build()
@@ -80,7 +88,9 @@ exports.default = () => {
 
     gulp
         .watch(`${project_path}`)
-        .on('all', gulp.series(clean_build, gulp.parallel(pug_to_html, scss_to_css, ts_to_js), on_project_change))
+        .on('unlink', clean_build)
+        .on('change', gulp.series(gulp.parallel(pug_to_html, scss_to_css, ts_to_js), on_project_change))
+        .on('add', gulp.series(gulp.parallel(pug_to_html, scss_to_css, ts_to_js), on_project_change))
 }
 
 exports.compile = () => {

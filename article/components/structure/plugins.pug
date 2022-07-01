@@ -1,0 +1,8 @@
+- let plugins = []
+
+mixin addPlugin(name="show-language")
+        - plugins.push(`https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/plugins/${name}/prism-${name}.min.js`)
+
+mixin renderPlugins
+    each plugin in plugins
+        script(src=plugin)

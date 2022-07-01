@@ -1,4 +1,4 @@
-mixin headerSection(tag, name = "", add_to_toc=true)
+mixin articleSection(tag, name = "", add_to_toc=true)
     mixin fetchTitleTag(tag)
         if tag === "part"
             h2(id=attributes.id, is-part)= name
@@ -10,7 +10,7 @@ mixin headerSection(tag, name = "", add_to_toc=true)
             h4(id=attributes.id)= name
 
     if add_to_toc
-        - toc.push(name)
+        //- - toc.push(name)
         +fetchTitleTag(tag)(id=`${name.toLowerCase().replace(' ', '-')}`)
     else
         +fetchTitleTag(tag)
