@@ -1,0 +1,8 @@
+include components/header/header.pug
+
+mixin TOC(title="Table Of Content")
+    if toc_render_ready
+        +articleSection('topic', title, false)
+        +textBlock 
+            block
+    div.toc-wrapper
